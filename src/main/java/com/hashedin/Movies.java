@@ -9,6 +9,7 @@ public class Movies {
 	private String release;
 	private String url;
 	private ArrayList<String> genre;
+	public int averageRating;
 	
 	public int getId() {
 		return id;
