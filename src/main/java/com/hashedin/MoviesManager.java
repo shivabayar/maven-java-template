@@ -21,6 +21,7 @@ public class MoviesManager {
 	}
 	
 	public Map<Integer,Movies> convertInputStreamToMap(InputStream moviesInputStream){
+		
 		Map<Integer,Movies> moviesMap = new HashMap<Integer,Movies>();
 		
 		try {
