@@ -29,10 +29,10 @@ public class Main {
 		GoogleOfMovies googleOfMovies = new GoogleOfMovies(moviesMap, ratingsArrayList, usersMap);
 		
 		googleOfMovies.findTotalRatingsOfEachMovie();
-		System.out.println(googleOfMovies.findTopMovie().getName());
-		System.out.println(googleOfMovies.MostWatchedMovie().getName());
+		System.out.println("Top Movie By rating : "+googleOfMovies.findTopMovie().getName());
+		System.out.println("Most Watched Movie : "+googleOfMovies.MostWatchedMovie().getName());
+		System.out.println("Top Movie By Genre : "+googleOfMovies.findTopMovieByGenre("Animation").getName());
 		
-		googleOfMovies.findTopMovieByGenre("Animation");
-		
+		System.out.println(googleOfMovies.MostActiveUser().getUserId());
 	}
 }

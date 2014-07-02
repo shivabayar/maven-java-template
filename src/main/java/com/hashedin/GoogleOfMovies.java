@@ -36,10 +36,13 @@ public class GoogleOfMovies {
 		for(Ratings rating: ratingsArrayList){
 			
 			Movies movies = moviesMap.get(rating.getMovieId());
-		
+			Users users = usersMap.get(rating.getUserId());
+			
 			movies.setTotalRating(rating.getRating());
 			movies.setRatingsCount();
-
+			
+			users.setNumberOfRatingsDoneCount();
+			
 			
 		}
 
@@ -67,7 +70,7 @@ public class GoogleOfMovies {
 //			++count;
 		}
 		
-		System.out.println(moviesMap.get(814).getGenre());
+//		System.out.println(moviesMap.get(814).getGenre());
 		
 		return averages;
 	}
@@ -134,14 +137,14 @@ public class GoogleOfMovies {
 			}
 		}
 		
-//		findMaxInGenreMap(genreMap);
-		System.out.println(findMaxInGenreMap(genreMap).getAverageRating());
 		
-		return null;
+//		System.out.println(findMaxInGenreMap(genreMap).getAverageRating());
+		
+		return findMaxInGenreMap(genreMap);
 	}
 	
 	public Movies findMaxInGenreMap(Map<Integer,Float> genreMap){
-		System.out.println(genreMap);
+//		System.out.println(genreMap);
 		
 		
 		Iterator genreMapIterator = genreMap.keySet().iterator();
@@ -153,7 +156,7 @@ public class GoogleOfMovies {
 		while(genreMapIterator.hasNext()){
 			int tempId = (int)genreMapIterator.next();
 //			System.out.println(moviesMap.get(tempId));
-			System.out.println(genreMap.get(tempId));
+//			System.out.println(genreMap.get(tempId));
 			float tempMax = genreMap.get(tempId);
 			if(max < tempMax){
 				maxId = tempId;
@@ -163,11 +166,30 @@ public class GoogleOfMovies {
 		}
 		
 //		System.out.println(moviesMap.get(maxId).getId());
-		System.out.println("toy"+" "+moviesMap.get(1).getAverageRating());
+//		System.out.println("toy"+" "+moviesMap.get(1).getAverageRating());
 		return moviesMap.get(maxId);
 		
 //		return null;
 	}
 
+	public Users MostActiveUser(){
+		
+		Iterator usersMapIterator = usersMap.keySet().iterator();
+		int maxUserId =(int) usersMapIterator.next();
+		int maxCount = usersMap.get(maxUserId).getNumberOfRatingsDoneCount();
+		
+		while(usersMapIterator.hasNext()){
+			int tempUserId = (int) usersMapIterator.next();
+			int tempMaxCount = usersMap.get(tempUserId).getNumberOfRatingsDoneCount();
+			
+			if(maxCount < tempMaxCount){
+				maxCount = tempMaxCount;
+				maxUserId = tempUserId;
+			}
+			
+		}
+		
+		return usersMap.get(maxUserId);
+	}
 
 }
