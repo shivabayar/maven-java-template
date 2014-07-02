@@ -1,7 +1,9 @@
 package com.hashedin;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /*
@@ -12,6 +14,7 @@ public class GoogleOfMovies {
 	Map<Integer,Movies> moviesMap = new HashMap<Integer,Movies>();
 	ArrayList<Ratings> ratingsArrayList = new ArrayList<Ratings>();
 	Map<Integer,Users> usersMap = new HashMap<Integer,Users>();
+	int []movieId = new int[moviesMap.size()];
 	
 	/**
 	 * Parameterized constructor 
@@ -26,28 +29,89 @@ public class GoogleOfMovies {
 	}
 	
 	
-	public void findAverageRatingsOfEachMovie(){
+	public void findTotalRatingsOfEachMovie(){
 		
 		
 		
 		for(Ratings rating: ratingsArrayList){
 			
 			Movies movies = moviesMap.get(rating.getMovieId());
-			
+		
 			movies.setTotalRating(rating.getRating());
 			movies.setRatingsCount();
-//			System.out.println(movies.getTotalRating());
-//			System.out.println(movies.getRatingsCount());
+
 			
 		}
-//		
-//		float a = ((float)moviesMap.get(1).getTotalRating()/(float)moviesMap.get(1).getRatingsCount());
-//		
-//		System.out.println(a);
-		
-		
+
+//		createArrayOfMovieIdAndAverageRating();
 	}
 	
 	
+	public float findAverage(int movieId){
+		
+		return ((float)moviesMap.get(movieId).getTotalRating()/(float)moviesMap.get(movieId).getRatingsCount());
+	}
+	
+	public float[] createArrayOfAverageRating(){
+		
+		movieId = new int[moviesMap.size()];
+		float []averages = new float[moviesMap.size()];
+		
+		Iterator moviesMapIterator = moviesMap.keySet().iterator();
+		
+		for(int i = 0 ;moviesMapIterator.hasNext(); ++i){
+			movieId[i] = (int) moviesMapIterator.next();
+			averages[i] = findAverage(movieId[i]);
+			moviesMap.get(movieId[i]).setAverageRating(averages[i]);
+//			System.out.println(findAverage(movieId[i]));
+//			++count;
+		}
+		
+		return averages;
+	}
+	
+
+	public Movies findTopMovie(){
+		
+		float averages[] = createArrayOfAverageRating();
+		float max = averages[0];
+		int positionOfMax = 0;
+		for(int i = 1 ; i < averages.length ; ++i){
+			
+			if(max < averages[i]){
+				positionOfMax = i;
+				max = averages[i];
+			}
+			
+		}
+		
+		return moviesMap.get(movieId[positionOfMax]);
+		
+	}
+	
+	public Movies MostWatchedMovie(){
+		
+		int numberOfTimesWatched[] = new int[moviesMap.size()];
+		
+		Iterator moviesMapIterator = moviesMap.keySet().iterator();
+		
+		int maxId = (int)moviesMapIterator.next();
+		
+		int max = moviesMap.get(maxId).getRatingsCount();
+		
+		while(moviesMapIterator.hasNext()){
+			int tempId = (int)moviesMapIterator.next();
+			int tempMax = moviesMap.get(tempId).getRatingsCount();
+			if(max < tempMax){
+				maxId = tempId;
+				max = tempMax;
+			}
+			
+		}
+		
+		return moviesMap.get(maxId);
+	}
+	
+//	public Movies
 
 }
