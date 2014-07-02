@@ -8,9 +8,15 @@ import java.util.StringTokenizer;
 
 import org.apache.commons.io.IOUtils;
 
+/**
+ * Manager for Ratings class*/
+
 public class RatingsManager {
 	
-	
+	/*
+	 * Reading the data file. 
+	 * @param File Name @type string
+	 * @return Input Stream @type InputStream*/
 	public InputStream readDataFile(String fileName){
 		System.out.println("working");
 		
@@ -19,6 +25,10 @@ public class RatingsManager {
 		return ratingsInputStream;
 	}
 	
+	/**
+	 * Converting the InputStream to an arrayList 
+	 * @param moviesInputStream @type InputStream
+	 * @return ArrayList<Ratings>*/
 	public ArrayList<Ratings> convertInputStreamToArrayListOfObjects(InputStream ratingsInputStream){
 		
 		ArrayList<Ratings> ratingsArrayList = new ArrayList<Ratings>();
@@ -28,10 +38,11 @@ public class RatingsManager {
 			List<String> lines = IOUtils.readLines(ratingsInputStream);
 			
 			for(String line : lines){
-				Ratings r = new Ratings();
+				Ratings ratings = new Ratings();
 				
-				r = parseLine(line);
-				ratingsArrayList.add(r);
+				ratings = parseLine(line);
+				ratingsArrayList.add(ratings);
+				
 			
 			}
 			
@@ -40,28 +51,26 @@ public class RatingsManager {
 			e.printStackTrace();
 		}
 		
+		
 		return ratingsArrayList;
 	}
 	
 	public Ratings parseLine(String line){
 		
 		StringTokenizer st = new StringTokenizer(line,"\t");
-		Ratings r = new Ratings();
+		Ratings ratings = new Ratings();
 		
 		if(st.hasMoreTokens())
 		{
-			r.setUserId(Integer.parseInt(st.nextToken()));
-			r.setMovieId(Integer.parseInt(st.nextToken()));
-			r.setRating(Integer.parseInt(st.nextToken()));
-			r.setTimeStamp(st.nextToken());
+			ratings.setUserId(Integer.parseInt(st.nextToken()));
+			ratings.setMovieId(Integer.parseInt(st.nextToken()));
+			ratings.setRating(Integer.parseInt(st.nextToken()));
+			ratings.setTimeStamp(st.nextToken());
 		}
 		
-		return r;
+		return ratings;
 	}
 	
-	public void highestRatedMovie(ArrayList<Ratings> ratingsArrayList){
-		
-	}
 	
 }
 

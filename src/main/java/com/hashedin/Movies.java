@@ -9,7 +9,9 @@ public class Movies {
 	private String release;
 	private String url;
 	private ArrayList<String> genre;
-	public int averageRating;
+	private int totalRating = 0;
+	private int ratingsCount = 0;
+	private float averageRating = 0;
 	
 	public int getId() {
 		return id;
@@ -38,13 +40,33 @@ public class Movies {
 	public ArrayList<String> getGenre() {
 		return genre;
 	}
-	public void setGenre(ArrayList<String> category) {
+	public void setGenre(ArrayList<String> genre) {
 		this.genre = genre;
 	}
 	@Override
 	public String toString() {
 		return "Movies [id=" + id + ", name=" + name + ", release=" + release
 				+ ", url=" + url + ", genre=" + genre + "]";
+	}
+
+	public int getRatingsCount() {
+		return ratingsCount;
+	}
+	public void setRatingsCount() {
+		
+		this.ratingsCount += 1;
+	}
+	public int getTotalRating() {
+		return totalRating;
+	}
+	public void setTotalRating(int totalRating) {
+		this.totalRating += totalRating;
+	}
+	public float getAverageRating() {
+		return averageRating;
+	}
+	public void setAverageRating(float averageRating) {
+		this.averageRating = averageRating;
 	}
 	
 	
