@@ -67,6 +67,8 @@ public class GoogleOfMovies {
 //			++count;
 		}
 		
+		System.out.println(moviesMap.get(814).getGenre());
+		
 		return averages;
 	}
 	
@@ -91,7 +93,7 @@ public class GoogleOfMovies {
 	
 	public Movies MostWatchedMovie(){
 		
-		int numberOfTimesWatched[] = new int[moviesMap.size()];
+//		int numberOfTimesWatched[] = new int[moviesMap.size()];
 		
 		Iterator moviesMapIterator = moviesMap.keySet().iterator();
 		
@@ -112,6 +114,60 @@ public class GoogleOfMovies {
 		return moviesMap.get(maxId);
 	}
 	
-//	public Movies
+	public Movies findTopMovieByGenre(String genre){
+		
+		Iterator moviesMapIterator = moviesMap.keySet().iterator();
+		int []ids = new int[moviesMap.size()];
+		Map<Integer,Float> genreMap = new HashMap<Integer,Float>();
+		
+		
+		while(moviesMapIterator.hasNext()){
+			int tempId = (int)moviesMapIterator.next();
+			ArrayList<String> genreList = moviesMap.get(tempId).getGenre();
+			
+			Iterator genreListIterator = genreList.iterator();
+			
+			while(genreListIterator.hasNext()){
+				if(genreListIterator.next() == genre){
+					genreMap.put(tempId, moviesMap.get(tempId).getAverageRating());
+				}
+			}
+		}
+		
+//		findMaxInGenreMap(genreMap);
+		System.out.println(findMaxInGenreMap(genreMap).getAverageRating());
+		
+		return null;
+	}
+	
+	public Movies findMaxInGenreMap(Map<Integer,Float> genreMap){
+		System.out.println(genreMap);
+		
+		
+		Iterator genreMapIterator = genreMap.keySet().iterator();
+		
+		int maxId = (int)genreMapIterator.next();
+		
+		float max = genreMap.get(maxId);
+		
+		while(genreMapIterator.hasNext()){
+			int tempId = (int)genreMapIterator.next();
+//			System.out.println(moviesMap.get(tempId));
+			System.out.println(genreMap.get(tempId));
+			float tempMax = genreMap.get(tempId);
+			if(max < tempMax){
+				maxId = tempId;
+				max = tempMax;
+			}
+			
+		}
+		
+//		System.out.println(moviesMap.get(maxId).getId());
+		System.out.println("toy"+" "+moviesMap.get(1).getAverageRating());
+		return moviesMap.get(maxId);
+		
+//		return null;
+	}
+
 
 }

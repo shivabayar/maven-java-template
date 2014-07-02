@@ -32,5 +32,7 @@ public class Main {
 		System.out.println(googleOfMovies.findTopMovie().getName());
 		System.out.println(googleOfMovies.MostWatchedMovie().getName());
 		
+		googleOfMovies.findTopMovieByGenre("Animation");
+		
 	}
 }

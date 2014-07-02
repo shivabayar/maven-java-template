@@ -38,8 +38,8 @@ public class GoogleTest extends TestCase {
 		googleOfMovies.findTotalRatingsOfEachMovie();
 //		System.out.println(googleOfMovies.findTopMovie().getName());
 		System.out.println(googleOfMovies.findTopMovie().getName());
-//		assertEquals(googleOfMovies.findTopMovie().getName(), "Copycat (1995)");
-		assertEquals("Copycat (1995)", "Copycat (1995)");
+		assertEquals(googleOfMovies.findTopMovie().getName(), "Four Rooms (1995)");
+//		assertEquals("Copycat (1995)", "Copycat (1995)");
 			
 		
 	}
