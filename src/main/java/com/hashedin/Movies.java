@@ -12,6 +12,7 @@ public class Movies {
 	private int totalRating = 0;
 	private int ratingsCount = 0;
 	private float averageRating = 0;
+	private int year ;
 	
 	public int getId() {
 		return id;
@@ -67,6 +68,12 @@ public class Movies {
 	}
 	public void setAverageRating(float averageRating) {
 		this.averageRating = averageRating;
+	}
+	public int getYear() {
+		return year;
+	}
+	public void setYear(int year) {
+		this.year = year;
 	}
 	
 	
